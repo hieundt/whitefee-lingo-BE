@@ -36,11 +36,11 @@ const UserSchema = new mongoose.Schema({
   }],
   followers: [{
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'Follower',
+    ref: 'User',
   }],
   following: [{
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'Following',
+    ref: 'User',
   }],
   favoritesVocabulary: [{
     type: mongoose.Schema.Types.ObjectId,

@@ -1,6 +1,6 @@
 import userModel from '../model/userModel.js'
 
-export const createUser = async (req, res) => {
+export const createUser = async (res, req, next) => {
   const user = new userModel(req.body)
   try {
     await user.save();
@@ -12,7 +12,7 @@ export const createUser = async (req, res) => {
 
 export const getAllUser = async (req, res, next) => {
   try {
-    const users = await userModel.find()
+    const users = await userModel.find({})
     res.send(users);
   } catch (error) {
     res.status(500).send(error.message);
@@ -25,11 +25,11 @@ export const getUserByID = async (req, res, next) => {
     const user = await userModel
       .findById({ _id: id })
       .populate('posts')
-      .populate('followers')
-      .populate('following')
+      //.populate('followers')
+      //.populate('following')
       .populate('favoritesVocabulary')
       .populate('favoritesUnit')
-      .populate('testHistory')
+      //.populate('testHistory')
       .populate('comments')
       .populate('commentReactions')
       .populate('votings')
@@ -43,7 +43,7 @@ export const getUserByID = async (req, res, next) => {
   }
 }
 
-export const updateUser = async (req, res) => {
+export const updateUser = async (res, req, next) => {
   const { id } = req.params
   const {
     role,
@@ -56,7 +56,7 @@ export const updateUser = async (req, res) => {
     birthDay
   } = req.body
   try {
-    const user = await userModel.findById(id)
+    const user = await userModel.findById({ _id: id })
     if (!user) {
       res.send({ 'status': '400', 'message': 'Update user not found' })
     }
@@ -76,7 +76,7 @@ export const updateUser = async (req, res) => {
   }
 }
 
-export const deleteUser = async (req, res) => {
+export const deleteUser = async (res, req, next) => {
   const { id } = req.params
   try {
     const user = await userModel.findById({ _id: id })
@@ -90,25 +90,25 @@ export const deleteUser = async (req, res) => {
   }
 }
 
-export const addPost = async (req, res) => {
+export const addPost = async (res, req, next) => {
   const { id } = req.params
-  const { post } = req.body
+  const { posts } = req.body
   try {
     const user = await userModel.findById({ _id: id })
     if (!user) {
       res.send({ 'status': '400', 'message': 'Update user not found' })
     }
-    await userModel.findByIdAndUpdate({ _id: id }, { $push: { post } })
+    await userModel.findByIdAndUpdate({ _id: id }, { $push: { posts } })
     res.send({ 'status': '200', 'message': 'Update user sucessful' })
   } catch (error) {
     res.status(500).send(error.message)
   }
 }
 
-export const removePost = async (req, res) => {
+export const removePost = async (res, req, next) => {
 }
 
-export const addFollower = async (req, res) => {
+export const addFollower = async (res, req, next) => {
   const { id } = req.params
   const { followers } = req.body
   try {
@@ -123,10 +123,10 @@ export const addFollower = async (req, res) => {
   }
 }
 
-export const removeFollower = async (req, res) => {
+export const removeFollower = async (res, req, next) => {
 }
 
-export const addFollowing = async (req, res) => {
+export const addFollowing = async (res, req, next) => {
   const { id } = req.params
   const { following } = req.body
   try {
@@ -141,82 +141,10 @@ export const addFollowing = async (req, res) => {
   }
 }
 
-export const removeFollowing = async (req, res) => {
+export const removeFollowing = async (res, req, next) => {
 }
 
-export const addTestHistory = async (req, res) => {
-  const { id } = req.params
-  const { testHistory } = req.body
-  try {
-    const user = await userModel.findById({ _id: id })
-    if (!user) {
-      res.send({ 'status': '400', 'message': 'Update user not found' })
-    }
-    await userModel.findByIdAndUpdate({ _id: id }, { $push: { testHistory } })
-    res.send({ 'status': '200', 'message': 'Update user sucessful' })
-  } catch (error) {
-    res.status(500).send(error.message)
-  }
-}
-
-export const removeTestHistory = async (req, res) => {
-}
-
-export const addComment = async (req, res) => {
-  const { id } = req.params
-  const { comments } = req.body
-  try {
-    const user = await userModel.findById({ _id: id })
-    if (!user) {
-      res.send({ 'status': '400', 'message': 'Update user not found' })
-    }
-    await userModel.findByIdAndUpdate({ _id: id }, { $push: { comments } })
-    res.send({ 'status': '200', 'message': 'Update user sucessful' })
-  } catch (error) {
-    res.status(500).send(error.message)
-  }
-}
-
-export const removeComment = async (req, res) => {
-}
-
-export const addCommentReaction = async (req, res) => {
-  const { id } = req.params
-  const { commentReactions } = req.body
-  try {
-    const user = await userModel.findById({ _id: id })
-    if (!user) {
-      res.send({ 'status': '400', 'message': 'Update user not found' })
-    }
-    await userModel.findByIdAndUpdate({ _id: id }, { $push: { commentReactions } })
-    res.send({ 'status': '200', 'message': 'Update user sucessful' })
-  } catch (error) {
-    res.status(500).send(error.message)
-  }
-}
-
-export const removeCommentReaction = async (req, res) => {
-}
-
-export const addVoting = async (req, res) => {
-  const { id } = req.params
-  const { votings } = req.body
-  try {
-    const user = await userModel.findById({ _id: id })
-    if (!user) {
-      res.send({ 'status': '400', 'message': 'Update user not found' })
-    }
-    await userModel.findByIdAndUpdate({ _id: id }, { $push: { votings } })
-    res.send({ 'status': '200', 'message': 'Update user sucessful' })
-  } catch (error) {
-    res.status(500).send(error.message)
-  }
-}
-
-export const removeVoting = async (req, res) => {
-}
-
-export const addFavoriteVoca = async (req, res) => {
+export const addFavoriteVoca = async (res, req, next) => {
   const { id } = req.params
   const { favoritesVocabulary } = req.body
   try {
@@ -232,10 +160,10 @@ export const addFavoriteVoca = async (req, res) => {
   }
 }
 
-export const removeFavoriteVoca = async (req, res) => {
+export const removeFavoriteVoca = async (res, req, next) => {
 }
 
-export const addFavoriteUnit = async (req, res) => {
+export const addFavoriteUnit = async (res, req, next) => {
   const { id } = req.params
   const { favoritesUnit } = req.body
   try {
@@ -251,5 +179,78 @@ export const addFavoriteUnit = async (req, res) => {
   }
 }
 
-export const removeFavoriteUnit = async (req, res) => {
+export const removeFavoriteUnit = async (res, req, next) => {
 }
+
+export const addTestHistory = async (res, req, next) => {
+  const { id } = req.params
+  const { testHistory } = req.body
+  try {
+    const user = await userModel.findById({ _id: id })
+    if (!user) {
+      res.send({ 'status': '400', 'message': 'Update user not found' })
+    }
+    await userModel.findByIdAndUpdate({ _id: id }, { $push: { testHistory } })
+    res.send({ 'status': '200', 'message': 'Update user sucessful' })
+  } catch (error) {
+    res.status(500).send(error.message)
+  }
+}
+
+export const removeTestHistory = async (res, req, next) => {
+}
+
+export const addComment = async (res, req, next) => {
+  const { id } = req.params
+  const { comments } = req.body
+  try {
+    const user = await userModel.findById({ _id: id })
+    if (!user) {
+      res.send({ 'status': '400', 'message': 'Update user not found' })
+    }
+    await userModel.findByIdAndUpdate({ _id: id }, { $push: { comments } })
+    res.send({ 'status': '200', 'message': 'Update user sucessful' })
+  } catch (error) {
+    res.status(500).send(error.message)
+  }
+}
+
+export const removeComment = async (res, req, next) => {
+}
+
+export const addCommentReaction = async (res, req, next) => {
+  const { id } = req.params
+  const { commentReactions } = req.body
+  try {
+    const user = await userModel.findById({ _id: id })
+    if (!user) {
+      res.send({ 'status': '400', 'message': 'Update user not found' })
+    }
+    await userModel.findByIdAndUpdate({ _id: id }, { $push: { commentReactions } })
+    res.send({ 'status': '200', 'message': 'Update user sucessful' })
+  } catch (error) {
+    res.status(500).send(error.message)
+  }
+}
+
+export const removeCommentReaction = async (res, req, next) => {
+}
+
+export const addVoting = async (res, req, next) => {
+  const { id } = req.params
+  const { votings } = req.body
+  try {
+    const user = await userModel.findById({ _id: id })
+    if (!user) {
+      res.send({ 'status': '400', 'message': 'Update user not found' })
+    }
+    await userModel.findByIdAndUpdate({ _id: id }, { $push: { votings } })
+    res.send({ 'status': '200', 'message': 'Update user sucessful' })
+  } catch (error) {
+    res.status(500).send(error.message)
+  }
+}
+
+export const removeVoting = async (res, req, next) => {
+}
+

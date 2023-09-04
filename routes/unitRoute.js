@@ -21,7 +21,7 @@ router.patch('/:id', updateUnit)
 
 router.patch('/addVoca/:id', addUnitVoca)
 
-router.patch('/removeVoca/:id', removeUnitVoca)
+//router.patch('/removeVoca/:id', removeUnitVoca)
 
 router.delete('/:id', deleteUnit)
 

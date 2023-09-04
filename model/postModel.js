@@ -1,12 +1,7 @@
 //checked
 import mongoose from "mongoose";
-import { v4 as uuidv4 } from 'uuid';
 
 const PostSchema = new mongoose.Schema({
-  id: {
-    type: String,
-    default: () => uuidv4,
-  },
   description: {
     type: String,
   },
@@ -16,8 +11,9 @@ const PostSchema = new mongoose.Schema({
   },
   postType: {
     type: String,
-    enum: ['VOCABULARY', 'TEST'],
-    default: 'VOCABULARY',
+    enum: ['VOCABULARY', 'TEST', 'NORMAL'],
+    default: 'NORMAL',
+    uppercase: true,
   },
   comments: [{
     type: mongoose.Schema.Types.ObjectId,
@@ -25,12 +21,12 @@ const PostSchema = new mongoose.Schema({
   }],
   votings: [{
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'PostHasVoting',
+    ref: 'Voting',
   }],
-  reports: [{
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'ReportedPost',
-  }],
+  // reports: [{
+  //   type: mongoose.Schema.Types.ObjectId,
+  //   ref: 'ReportedPost',
+  // }],
 
 });
 

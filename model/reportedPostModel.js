@@ -1,19 +1,16 @@
 //checked
 import mongoose from "mongoose";
-import { v4 as uuidv4 } from "uuid"
 
 const ReportedPostSchema = new mongoose.Schema({
-  id: {
-    type: String,
-    default: () => uuidv4,
-  },
   postId: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Post',
+    require: true,
   },
   reporterId: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',
+    require: true,
   },
   description: {
     type: String,

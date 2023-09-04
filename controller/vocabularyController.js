@@ -1,6 +1,6 @@
 import vocabularyModel from '../model/vocabularyModel.js'
 
-export const createVocabulary = async (req, res) => {
+export const createVocabulary = async (res, req, next) => {
   const vocabulary = new vocabularyModel(req.body)
   try {
     await vocabulary.save()
@@ -32,7 +32,7 @@ export const getVocabularyById = async (req, res, next) => {
   }
 }
 
-export const updateVocabulary = async (req, res) => {
+export const updateVocabulary = async (res, req, next) => {
   const { id } = req.params
   const {
     word,
@@ -67,7 +67,7 @@ export const updateVocabulary = async (req, res) => {
   }
 }
 
-export const deleteVocabulary = async (req, res) => {
+export const deleteVocabulary = async (res, req, next) => {
   const { id } = req.params
   try {
     const vocabulary = await vocabularyModel.findById({ _id: id })
