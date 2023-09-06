@@ -1,20 +1,15 @@
 import mongoose from "mongoose";
-import { v4 as uuidv4 } from "uuid"
 
-const TestHistorySchema = new mongoose.Schema({
-  id: {
-    type: String,
-    default: () => uuidv4,
-  },
+const ToeicTestHistorySchema = new mongoose.Schema({
   userId: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',
   },
   testId: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'Test',
+    ref: 'ToeicTest',
   },
-  totalPoint: {
+  totalScore: {
     type: Number,
     default: 0,
   },
@@ -24,6 +19,6 @@ const TestHistorySchema = new mongoose.Schema({
   },
 });
 
-const TestHistory = mongoose.model("TestHistory", TestHistorySchema);
+const ToeicTestHistory = mongoose.model("TestHistory", ToeicTestHistorySchema);
 
-export default TestHistory;
+export default ToeicTestHistory;

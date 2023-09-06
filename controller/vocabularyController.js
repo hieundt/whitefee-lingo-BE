@@ -11,9 +11,9 @@ export const createVocabulary = async (res, req, next) => {
 }
 
 export const getAllVocabulary = async (req, res, next) => {
-  const vocabulary = await vocabularyModel.find({})
+  const vocabularies = await vocabularyModel.find({})
   try {
-    res.send(vocabulary)
+    res.send(vocabularies)
   } catch (error) {
     res.status(500).send(error.message)
   }
