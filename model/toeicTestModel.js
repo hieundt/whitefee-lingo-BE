@@ -11,14 +11,14 @@ const ToeicTestSchema = new mongoose.Schema({
   promt: {
     type: String,
   },
-  listeningScore: {
-    type: Number,
-    default: 0,
-  },
-  readingScore: {
-    type: Number,
-    default: 0,
-  },
+  // listeningScore: {
+  //   type: Number,
+  //   default: 0,
+  // },
+  // readingScore: {
+  //   type: Number,
+  //   default: 0,
+  // },
   questions: [
     {
       type: mongoose.Schema.Types.ObjectId,
@@ -27,6 +27,6 @@ const ToeicTestSchema = new mongoose.Schema({
   ],
 })
 
-const ToeicTest = ToeicTestSchema('ToeicTest', ToeicSchema);
+const ToeicTest = mongoose.model('ToeicTest', ToeicTestSchema);
 
 export default ToeicTest;

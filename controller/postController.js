@@ -1,6 +1,6 @@
 import postModel from '../model/postModel.js'
 
-export const createPost = async (res, req, next) => {
+export const createPost = async (req, res, next) => {
   const post = new postModel(req.body)
   try {
     await post.save();
@@ -38,7 +38,7 @@ export const getPostById = async (req, res, next) => {
   }
 }
 
-export const updatePost = async (res, req, next) => {
+export const updatePost = async (req, res, next) => {
   const { id } = req.params
   const { description, point, postType } = req.body
   try {
@@ -55,7 +55,7 @@ export const updatePost = async (res, req, next) => {
 }
 
 
-export const deletePost = async (res, req, next) => {
+export const deletePost = async (req, res, next) => {
   const { id } = req.params
   try {
     const post = await postModel.findById({ _id: id })
@@ -69,7 +69,7 @@ export const deletePost = async (res, req, next) => {
   }
 }
 
-export const addPostComment = async (res, req, next) => {
+export const addPostComment = async (req, res, next) => {
   const { id } = req.params
   const { comments } = req.body
   try {
@@ -84,11 +84,11 @@ export const addPostComment = async (res, req, next) => {
   }
 }
 
-export const removePostComment = async (res, req, next) => {
+export const removePostComment = async (req, res, next) => {
 
 }
 
-export const addPostVoting = async (res, req, next) => {
+export const addPostVoting = async (req, res, next) => {
   const { id } = req.params
   const { votings } = req.body
   try {
@@ -103,11 +103,11 @@ export const addPostVoting = async (res, req, next) => {
   }
 }
 
-export const removePostVoting = async (res, req, next) => {
+export const removePostVoting = async (req, res, next) => {
 
 }
 
-// export const addPostReport = async (res, req, next) => {
+// export const addPostReport = async (req, res, next) => {
 //   const { id } = req.params
 //   const { reports } = req.body
 //   try {
@@ -122,6 +122,6 @@ export const removePostVoting = async (res, req, next) => {
 //   }
 // }
 
-// export const removePostReport = async (res, req, next) => {
+// export const removePostReport = async (req, res, next) => {
 
 // }

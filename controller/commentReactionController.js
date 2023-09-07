@@ -1,6 +1,6 @@
 import commentReactionModel from '../model/commentReactionModel.js'
 
-export const createCommentReaction = async (res, req, next) => {
+export const createCommentReaction = async (req, res, next) => {
   const commentReaction = new commentReactionModel(req.body)
   try {
     await commentReaction.save();
@@ -34,7 +34,7 @@ export const getCommentReactionById = async (req, res, next) => {
   }
 }
 
-export const updateCommentReaction = async (res, req, next) => {
+export const updateCommentReaction = async (req, res, next) => {
   const { id } = req.params
   const { reaction } = req.body
   try {
@@ -51,7 +51,7 @@ export const updateCommentReaction = async (res, req, next) => {
 }
 
 
-export const deleteCommentReaction = async (res, req, next) => {
+export const deleteCommentReaction = async (req, res, next) => {
   const { id } = req.params
   try {
     const commentReaction = await commentReactionModel.findById({ _id: id })

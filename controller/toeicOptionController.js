@@ -1,6 +1,6 @@
 import toeicOptionModel from '../model/toeicOptionModel.js'
 
-export const createToeicOption = async (res, req, next) => {
+export const createToeicOption = async (req, res, next) => {
   const option = new toeicOptionModel(req.body)
   try {
     await option.save()
@@ -32,7 +32,7 @@ export const getToeicOptionById = async (req, res, next) => {
   }
 }
 
-export const updateToeicOption = async (res, req, next) => {
+export const updateToeicOption = async (req, res, next) => {
   const { id } = req.params
   const {
     content,
@@ -56,7 +56,7 @@ export const updateToeicOption = async (res, req, next) => {
   }
 }
 
-export const deleteToeicOption = async (res, req, next) => {
+export const deleteToeicOption = async (req, res, next) => {
   const { id } = req.params
   try {
     const option = await toeicOptionModel.findById({ _id: id })

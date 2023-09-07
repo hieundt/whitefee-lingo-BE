@@ -1,6 +1,6 @@
 import modModel from '../model/modModel.js'
 
-export const createMod = async (res, req, next) => {
+export const createMod = async (req, res, next) => {
   const mod = new modModel(req.body)
   try {
     await mod.save();
@@ -50,7 +50,7 @@ export const getModById = async (req, res, next) => {
 // }
 
 
-export const deleteMod = async (res, req, next) => {
+export const deleteMod = async (req, res, next) => {
   const { id } = req.params
   try {
     const mod = await modModel.findById({ _id: id })
@@ -64,18 +64,18 @@ export const deleteMod = async (res, req, next) => {
   }
 }
 
-export const addPendingPost = async (res, req, next) => {
+export const addPendingPost = async (req, res, next) => {
 
 }
 
-export const removePendingPost = async (res, req, next) => {
+export const removePendingPost = async (req, res, next) => {
 
 }
 
-export const add = async (res, req, next) => {
+export const add = async (req, res, next) => {
 
 }
 
-export const remove = async (res, req, next) => {
+export const remove = async (req, res, next) => {
 
 }

@@ -10,6 +10,7 @@ import commentReactionRoutes from './routes/commentReactionRoute.js'
 import votingRoutes from './routes/votingRoute.js'
 import vocabularyRoutes from './routes/vocabularyRoute.js'
 import unitRoutes from './routes/unitRoute.js'
+import toeicTestRoutes from './routes/toeicTestRoute.js'
 import toeicQuestionBlockRoutes from './routes/toeicQuestionBlockRoute.js'
 import toeicOptionRoutes from './routes/toeicOptionRoute.js'
 import mongoose from 'mongoose';
@@ -59,6 +60,9 @@ app.use('/api/vocabularies', vocabularyRoutes)
 
 // Unit
 app.use('/api/units', unitRoutes)
+
+//Test
+app.use('/api/toeicTests', toeicTestRoutes)
 
 // Question block
 app.use('/api/toeicQuestionBlocks', toeicQuestionBlockRoutes)

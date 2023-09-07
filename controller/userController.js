@@ -1,6 +1,6 @@
 import userModel from '../model/userModel.js'
 
-export const createUser = async (res, req, next) => {
+export const createUser = async (req, res, next) => {
   const user = new userModel(req.body)
   try {
     await user.save();
@@ -43,7 +43,7 @@ export const getUserByID = async (req, res, next) => {
   }
 }
 
-export const updateUser = async (res, req, next) => {
+export const updateUser = async (req, res, next) => {
   const { id } = req.params
   const {
     role,
@@ -76,7 +76,7 @@ export const updateUser = async (res, req, next) => {
   }
 }
 
-export const deleteUser = async (res, req, next) => {
+export const deleteUser = async (req, res, next) => {
   const { id } = req.params
   try {
     const user = await userModel.findById({ _id: id })
@@ -90,7 +90,7 @@ export const deleteUser = async (res, req, next) => {
   }
 }
 
-export const addPost = async (res, req, next) => {
+export const addPost = async (req, res, next) => {
   const { id } = req.params
   const { posts } = req.body
   try {
@@ -105,10 +105,10 @@ export const addPost = async (res, req, next) => {
   }
 }
 
-export const removePost = async (res, req, next) => {
+export const removePost = async (req, res, next) => {
 }
 
-export const addFollower = async (res, req, next) => {
+export const addFollower = async (req, res, next) => {
   const { id } = req.params
   const { followers } = req.body
   try {
@@ -123,10 +123,10 @@ export const addFollower = async (res, req, next) => {
   }
 }
 
-export const removeFollower = async (res, req, next) => {
+export const removeFollower = async (req, res, next) => {
 }
 
-export const addFollowing = async (res, req, next) => {
+export const addFollowing = async (req, res, next) => {
   const { id } = req.params
   const { following } = req.body
   try {
@@ -141,10 +141,10 @@ export const addFollowing = async (res, req, next) => {
   }
 }
 
-export const removeFollowing = async (res, req, next) => {
+export const removeFollowing = async (req, res, next) => {
 }
 
-export const addFavoriteVoca = async (res, req, next) => {
+export const addFavoriteVoca = async (req, res, next) => {
   const { id } = req.params
   const { favoritesVocabulary } = req.body
   try {
@@ -160,10 +160,10 @@ export const addFavoriteVoca = async (res, req, next) => {
   }
 }
 
-export const removeFavoriteVoca = async (res, req, next) => {
+export const removeFavoriteVoca = async (req, res, next) => {
 }
 
-export const addFavoriteUnit = async (res, req, next) => {
+export const addFavoriteUnit = async (req, res, next) => {
   const { id } = req.params
   const { favoritesUnit } = req.body
   try {
@@ -179,10 +179,10 @@ export const addFavoriteUnit = async (res, req, next) => {
   }
 }
 
-export const removeFavoriteUnit = async (res, req, next) => {
+export const removeFavoriteUnit = async (req, res, next) => {
 }
 
-export const addTestHistory = async (res, req, next) => {
+export const addTestHistory = async (req, res, next) => {
   const { id } = req.params
   const { testHistory } = req.body
   try {
@@ -197,10 +197,10 @@ export const addTestHistory = async (res, req, next) => {
   }
 }
 
-export const removeTestHistory = async (res, req, next) => {
+export const removeTestHistory = async (req, res, next) => {
 }
 
-export const addComment = async (res, req, next) => {
+export const addComment = async (req, res, next) => {
   const { id } = req.params
   const { comments } = req.body
   try {
@@ -215,10 +215,10 @@ export const addComment = async (res, req, next) => {
   }
 }
 
-export const removeComment = async (res, req, next) => {
+export const removeComment = async (req, res, next) => {
 }
 
-export const addCommentReaction = async (res, req, next) => {
+export const addCommentReaction = async (req, res, next) => {
   const { id } = req.params
   const { commentReactions } = req.body
   try {
@@ -233,10 +233,10 @@ export const addCommentReaction = async (res, req, next) => {
   }
 }
 
-export const removeCommentReaction = async (res, req, next) => {
+export const removeCommentReaction = async (req, res, next) => {
 }
 
-export const addVoting = async (res, req, next) => {
+export const addVoting = async (req, res, next) => {
   const { id } = req.params
   const { votings } = req.body
   try {
@@ -251,6 +251,6 @@ export const addVoting = async (res, req, next) => {
   }
 }
 
-export const removeVoting = async (res, req, next) => {
+export const removeVoting = async (req, res, next) => {
 }
 

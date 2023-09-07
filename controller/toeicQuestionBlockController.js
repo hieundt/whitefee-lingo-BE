@@ -1,6 +1,6 @@
 import toeicQuestionBlockModel from '../model/toeicQuestionBlockModel.js'
 
-export const createToeicQuestionBlock = async (res, req, next) => {
+export const createToeicQuestionBlock = async (req, res, next) => {
   const questionBlock = new toeicQuestionBlockModel(req.body)
   try {
     await questionBlock.save()
@@ -22,7 +22,10 @@ export const getAllToeicQuestionBlock = async (req, res, next) => {
 export const getToeicQuestionBlockById = async (req, res, next) => {
   const { id } = req.params
   try {
-    const questionBlock = await toeicQuestionBlockModel.findById({ _id: id })
+    const questionBlock = await
+      toeicQuestionBlockModel
+        .findById({ _id: id })
+        .populate('options')
     if (!questionBlock) {
       res.send({ 'status': '400', 'message': 'Question block not found' })
     }
@@ -32,7 +35,7 @@ export const getToeicQuestionBlockById = async (req, res, next) => {
   }
 }
 
-export const updateToeicQuestionBlock = async (res, req, next) => {
+export const updateToeicQuestionBlock = async (req, res, next) => {
   const { id } = req.params
   const {
     question,
@@ -60,7 +63,7 @@ export const updateToeicQuestionBlock = async (res, req, next) => {
   }
 }
 
-export const deleteToeicQuestionBlock = async (res, req, next) => {
+export const deleteToeicQuestionBlock = async (req, res, next) => {
   const { id } = req.params
   try {
     const questionBlock = await toeicQuestionBlockModel.findById({ _id: id })
@@ -78,11 +81,11 @@ export const addToeicQuestionBlockOption = async (req, res, next) => {
   const { id } = req.params
   const { options } = req.body
   try {
-    const unit = await unitModel.findById({ _id: id })
-    if (!unit) {
+    const questionBlock = await toeicQuestionBlockModel.findById({ _id: id })
+    if (!questionBlock) {
       res.send({ 'status': '400', 'message': 'Update question block not found' })
     }
-    await unitModel.findByIdAndUpdate({ _id: id }, { $push: { options } })
+    await toeicQuestionBlockModel.findByIdAndUpdate({ _id: id }, { $push: { options } })
     console.log(options)
     res.send({ 'status': '200', 'message': 'Update question block sucessful' })
   } catch (error) {

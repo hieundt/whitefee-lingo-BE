@@ -1,6 +1,6 @@
 import adminModel from '../model/adminModel.js'
 
-export const createAdmin = async (res, req, next) => {
+export const createAdmin = async (req, res, next) => {
   const admin = new adminModel(req.body)
   try {
     await admin.save();
@@ -10,7 +10,7 @@ export const createAdmin = async (res, req, next) => {
   }
 }
 
-export const getAllAdmin = async (res, req, next) => {
+export const getAllAdmin = async (req, res, next) => {
   try {
     const admins = await adminModel.find({});
     res.send(admins);
@@ -50,7 +50,7 @@ export const getAdminById = async (req, res, next) => {
 // }
 
 
-export const deleteAdmin = async (res, req, next) => {
+export const deleteAdmin = async (req, res, next) => {
   const { id } = req.params
   try {
     const admin = await adminModel.findById({ _id: id })

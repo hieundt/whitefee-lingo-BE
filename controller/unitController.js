@@ -1,6 +1,6 @@
 import unitModel from '../model/unitModel.js'
 
-export const createUnit = async (res, req, next) => {
+export const createUnit = async (req, res, next) => {
   const unit = new unitModel(req.body)
   try {
     await unit.save();
@@ -35,7 +35,7 @@ export const getUnitById = async (req, res, next) => {
   }
 }
 
-export const updateUnit = async (res, req, next) => {
+export const updateUnit = async (req, res, next) => {
   const { id } = req.params
   const { topic, image } = req.body
   try {
@@ -52,7 +52,7 @@ export const updateUnit = async (res, req, next) => {
   }
 }
 
-export const addUnitVoca = async (res, req, next) => {
+export const addUnitVoca = async (req, res, next) => {
   const { id } = req.params
   const { vocabularies } = req.body
   try {
@@ -85,7 +85,7 @@ export const removeUnitVoca = async (req, res) => {
   // }
 }
 
-export const deleteUnit = async (res, req, next) => {
+export const deleteUnit = async (req, res, next) => {
   const { id } = req.params
   try {
     const unit = await unitModel.findById({ _id: id })

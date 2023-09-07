@@ -1,6 +1,6 @@
 import reportedPostModel from '../model/reportedPostModel.js'
 
-export const createReportedPost = async (res, req, next) => {
+export const createReportedPost = async (req, res, next) => {
   const reportedPost = new reportedPostModel(req.body)
   try {
     await reportedPost.save();
@@ -53,7 +53,7 @@ export const getReportedPostById = async (req, res, next) => {
 // }
 
 
-export const deleteReportedPost = async (res, req, next) => {
+export const deleteReportedPost = async (req, res, next) => {
   const { id } = req.params
   try {
     const reportedPost = await reportedPostModel.findById({ _id: id })
