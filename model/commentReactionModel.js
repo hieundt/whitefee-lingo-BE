@@ -4,9 +4,8 @@ import mongoose from "mongoose";
 const CommentReactionSchema = new mongoose.Schema({
   reaction: {
     type: String,
-    enum: ['NONE', 'LOVE', 'HAHA', 'SAD', 'ANGRY'],
-    default: 'NONE',
-    uppercase: true,
+    enum: ['none', 'love', 'haha', 'sad', 'angry'],
+    default: 'none',
   },
 });
 

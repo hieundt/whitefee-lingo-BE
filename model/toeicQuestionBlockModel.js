@@ -5,21 +5,17 @@ const ToeicQuestionBlockSchema = new mongoose.Schema({
     type: String,
     require: true,
   },
-  correctAnswer: {
-    type: Boolean,
-    require: true,
-  },
   explaination: {
     type: String,
-    require: true,
   },
   score: {
     type: Number,
     default: 0,
   },
-  option: [{
+  options: [{
     type: mongoose.Schema.Types.ObjectId,
     ref: 'ToeicOption',
+
   }],
 });
 

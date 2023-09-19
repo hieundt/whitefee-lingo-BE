@@ -1,6 +1,6 @@
 import toeicOptionModel from '../model/toeicOptionModel.js'
 
-export const createVocabulary = async (res, req, next) => {
+export const createToeicOption = async (req, res, next) => {
   const option = new toeicOptionModel(req.body)
   try {
     await option.save()
@@ -10,7 +10,7 @@ export const createVocabulary = async (res, req, next) => {
   }
 }
 
-export const getAllOption = async (req, res, next) => {
+export const getAllToeicOption = async (req, res, next) => {
   const options = await toeicOptionModel.find({})
   try {
     res.send(options)
@@ -19,7 +19,7 @@ export const getAllOption = async (req, res, next) => {
   }
 }
 
-export const getOptionById = async (req, res, next) => {
+export const getToeicOptionById = async (req, res, next) => {
   const { id } = req.params
   try {
     const option = await toeicOptionModel.findById({ _id: id })
@@ -32,7 +32,7 @@ export const getOptionById = async (req, res, next) => {
   }
 }
 
-export const updateOption = async (res, req, next) => {
+export const updateToeicOption = async (req, res, next) => {
   const { id } = req.params
   const {
     content,
@@ -56,7 +56,7 @@ export const updateOption = async (res, req, next) => {
   }
 }
 
-export const deleteOption = async (res, req, next) => {
+export const deleteToeicOption = async (req, res, next) => {
   const { id } = req.params
   try {
     const option = await toeicOptionModel.findById({ _id: id })

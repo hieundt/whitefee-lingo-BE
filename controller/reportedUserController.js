@@ -1,6 +1,6 @@
 import reportedUserModel from '../model/reportedUserModel.js'
 
-export const createReportedUser = async (res, req, next) => {
+export const createReportedUser = async (req, res, next) => {
   const reportedUser = new reportedUserModel(req.body)
   try {
     await reportedUser.save();
@@ -53,7 +53,7 @@ export const getReportedUserById = async (req, res, next) => {
 // }
 
 
-export const deleteReportedUser = async (res, req, next) => {
+export const deleteReportedUser = async (req, res, next) => {
   const { id } = req.params
   try {
     const reportedUser = await reportedUserModel.findById({ _id: id })

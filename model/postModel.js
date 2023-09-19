@@ -11,9 +11,8 @@ const PostSchema = new mongoose.Schema({
   },
   postType: {
     type: String,
-    enum: ['VOCABULARY', 'TEST', 'NORMAL'],
-    default: 'NORMAL',
-    uppercase: true,
+    enum: ['vocabulary', 'test', 'normal'],
+    default: 'normal',
   },
   comments: [{
     type: mongoose.Schema.Types.ObjectId,
@@ -23,11 +22,6 @@ const PostSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Voting',
   }],
-  // reports: [{
-  //   type: mongoose.Schema.Types.ObjectId,
-  //   ref: 'ReportedPost',
-  // }],
-
 });
 
 const Post = mongoose.model("Post", PostSchema);

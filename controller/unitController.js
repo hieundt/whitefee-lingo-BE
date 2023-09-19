@@ -1,6 +1,6 @@
 import unitModel from '../model/unitModel.js'
 
-export const createUnit = async (res, req, next) => {
+export const createUnit = async (req, res, next) => {
   const unit = new unitModel(req.body)
   try {
     await unit.save();
@@ -35,7 +35,7 @@ export const getUnitById = async (req, res, next) => {
   }
 }
 
-export const updateUnit = async (res, req, next) => {
+export const updateUnit = async (req, res, next) => {
   const { id } = req.params
   const { topic, image } = req.body
   try {
@@ -52,7 +52,7 @@ export const updateUnit = async (res, req, next) => {
   }
 }
 
-export const addUnitVoca = async (res, req, next) => {
+export const addUnitVoca = async (req, res, next) => {
   const { id } = req.params
   const { vocabularies } = req.body
   try {
@@ -69,23 +69,28 @@ export const addUnitVoca = async (res, req, next) => {
 }
 
 //! CANT REMOVE VOCABULARY
-export const removeUnitVoca = async (req, res) => {
-  // const { id } = req.params
-  // const { vocabularies } = req.body
-  // try {
-  //   const unit = await unitModel.findById({ _id: id })
-  //   if (!unit) {
-  //     res.send({ 'status': '400', 'message': 'Update unit not found' })
-  //   }
-  //   await unitModel.findByIdAndUpdate({ _id: id }, { $pull: { vocabularies: { _id: vocabularies } } })
-  //   console.log(vocabularies)
-  //   res.send({ 'status': '200', 'message': 'Update unit successful' });
-  // } catch (error) {
-  //   res.status(500).send(error.message)
-  // }
-}
+// export const removeUnitVoca = async (req, res) => {
+//   const { id } = req.params
+//   const { vocabularies } = req.body
+//   const temp = vocabularies[0]
 
-export const deleteUnit = async (res, req, next) => {
+//   try {
+//     await unitModel.updateOne
+//       ({ _id: id.toString() }, {
+//         $pull: { vocabularies: { _id: mongoose.Types.ObjectId(temp.toString()) } }
+//       }).exec()
+
+//     res.status(200).send("Completed")
+
+
+
+
+//   } catch (error) {
+//     res.status(500).send(error.message)
+//   }
+// }
+
+export const deleteUnit = async (req, res, next) => {
   const { id } = req.params
   try {
     const unit = await unitModel.findById({ _id: id })

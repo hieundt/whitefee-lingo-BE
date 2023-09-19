@@ -1,6 +1,6 @@
 import votingModel from '../model/votingModel.js'
 
-export const createVoting = async (res, req, next) => {
+export const createVoting = async (req, res, next) => {
   const voting = new votingModel(req.body)
   try {
     await voting.save();
@@ -34,7 +34,7 @@ export const getVotingById = async (req, res, next) => {
   }
 }
 
-export const updateVoting = async (res, req, next) => {
+export const updateVoting = async (req, res, next) => {
   const { id } = req.params
   const { voting } = req.body
   try {
@@ -51,7 +51,7 @@ export const updateVoting = async (res, req, next) => {
 }
 
 
-export const deleteVoting = async (res, req, next) => {
+export const deleteVoting = async (req, res, next) => {
   const { id } = req.params
   try {
     const voting = await votingModel.findById({ _id: id })
