@@ -6,7 +6,7 @@ import {
   updateUnit,
   deleteUnit,
   addUnitVoca,
-  removeUnitVoca,
+  // removeUnitVoca,
 } from '../controller/unitController.js'
 
 const router = express.Router()

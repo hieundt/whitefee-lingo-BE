@@ -4,8 +4,8 @@ import mongoose from "mongoose";
 const UserSchema = new mongoose.Schema({
   role: {
     type: String,
-    enum: ['USER', 'ADIN', 'MOD'],
-    default: 'USER',
+    enum: ['user', 'admin', 'mod'],
+    default: 'user',
   },
   point: {
     type: Number,

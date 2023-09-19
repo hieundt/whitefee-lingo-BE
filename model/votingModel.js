@@ -4,8 +4,8 @@ import mongoose from "mongoose";
 const VotingSchema = new mongoose.Schema({
   voting: {
     type: String,
-    enum: ['NONE', 'UPVOTING', 'DOWNVOTING'],
-    default: 'NONE',
+    enum: ['none', 'upvoting', 'downvoting'],
+    default: 'none',
     uppercase: true,
   },
 

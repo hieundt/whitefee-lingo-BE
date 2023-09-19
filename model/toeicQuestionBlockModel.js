@@ -5,10 +5,6 @@ const ToeicQuestionBlockSchema = new mongoose.Schema({
     type: String,
     require: true,
   },
-  correctAnswer: {
-    type: String,
-    //require: true,
-  },
   explaination: {
     type: String,
   },
