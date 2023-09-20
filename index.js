@@ -33,6 +33,7 @@ import toeicWritingResponseRoutes from './routes/toeicWritingResponseRoute.js'
 import toeicSpeakingResponseRoutes from './routes/toeicSpeakingResponseRoute.js'
 
 import mongoose from 'mongoose';
+import cors from "cors"
 const mongoString = process.env.DATABASE_URL
 
 const app = express()
@@ -52,6 +53,7 @@ const port = 3000
 
 // Global
 app.use(bodyParser.json())
+app.use(cors())
 
 // Admin
 app.use('/api/admins', adminRoutes)
