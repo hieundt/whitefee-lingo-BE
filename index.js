@@ -6,6 +6,8 @@ import userRoutes from './routes/userRoute.js'
 import reportedUserRoutes from './routes/reportedUserRoute.js'
 import reportedPostRoutes from './routes/reportedPostRoute.js'
 
+import aiRoutes from './routes/aiRoutes.js'
+
 import adminRoutes from './routes/adminRoute.js'
 import modRoutes from './routes/modRoute.js'
 
@@ -120,6 +122,10 @@ app.use('/api/toeicWritingResponses', toeicWritingResponseRoutes)
 
 // Speaking response
 app.use('/api/toeicSpeakingResponses', toeicSpeakingResponseRoutes)
+
+
+//AI
+app.use('/api/AI', aiRoutes)
 
 //Send info that page is not existed
 app.use(function (req, res) {
